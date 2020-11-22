@@ -1,5 +1,6 @@
-package com.vidin.inventory;
+package com.vidin.inventory.node;
 
+import com.vidin.inventory.node.NodeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -7,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class CardNotFoundAdvice {
+class NodeNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(CardNotFoundException.class)
+    @ExceptionHandler(NodeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String CardNotFoundHandler(CardNotFoundException ex) {
+    String CardNotFoundHandler(NodeNotFoundException ex) {
         return ex.getMessage();
     }
 }

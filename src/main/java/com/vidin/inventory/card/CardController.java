@@ -1,4 +1,4 @@
-package com.vidin.inventory;
+package com.vidin.inventory.card;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;

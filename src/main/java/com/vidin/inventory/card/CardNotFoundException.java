@@ -1,4 +1,4 @@
-package com.vidin.inventory;
+package com.vidin.inventory.card;
 
 class CardNotFoundException extends RuntimeException {
 
