@@ -1,9 +1,36 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    environment {
+        registryCredential = "docker"
+    }
+    agent any
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+                git 'https://github.com/MaheswaraPrasad/oss'
+            }
+        },
+        stage(‘Build’) {
+            steps{
+                script {
+                    sh 'mvn clean install'
+                }
+            }
+        },
+        stage(‘Load’) {
+            steps{
+                script {
+                    app = docker.build("cloud007/simple-spring")
+                }
+            }
+        },
+         stage(‘Deploy’) {
+            steps{
+                script {
+                    docker.withRegistry( "https://registry.hub.docker.com", registryCredential ) {
+                    // dockerImage.push()
+                    app.push("latest")
+                    }
+                }
             }
         }
     }
