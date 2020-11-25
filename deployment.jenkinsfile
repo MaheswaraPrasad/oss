@@ -8,21 +8,21 @@ pipeline {
             steps {
                 git 'https://github.com/MaheswaraPrasad/oss'
             }
-        },
+        }
         stage(‘Build’) {
             steps{
                 script {
                     sh 'mvn clean install'
                 }
             }
-        },
+        }
         stage(‘Load’) {
             steps{
                 script {
                     app = docker.build("cloud007/simple-spring")
                 }
             }
-        },
+        }
          stage(‘Deploy’) {
             steps{
                 script {
