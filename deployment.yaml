@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myossapp
+  name: myossapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myossapp
+  template:
+    metadata:
+      labels:
+        app: myossapp
+    spec:
+      containers:
+      - image: inventory:0.0.1-SNAPSHOT
+        name: inventory
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: myossapp
+  name: myossapp
+spec:
+  ports:
+  - name: 8443-8443
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    app: myossapp
+  type: ClusterIP
+status:
+  loadBalancer: {}
