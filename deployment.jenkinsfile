@@ -1,13 +1,10 @@
 pipeline {
-    environment {
-        registryCredential = "docker"
-    }
     agent any
      tools {
        maven 'Maven'
       }
     stages {
-        stage('build') {
+        stage('source') {
             steps {
                 git 'https://github.com/MaheswaraPrasad/oss'
             }
