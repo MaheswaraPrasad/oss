@@ -3,6 +3,10 @@ pipeline {
         registryCredential = "docker"
     }
     agent any
+     tools {
+       jdk 'JDK8'
+       maven 'Maven'
+      }
     stages {
         stage('build') {
             steps {
