@@ -24,7 +24,7 @@ pipeline {
         stage(‘Load’) {
             steps{
                 script {
-                    def customImage = docker.build("MyOss")
+                    def customImage = docker.build("my-oss")
                     customImage.push()
                 }
             }
