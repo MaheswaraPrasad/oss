@@ -25,7 +25,6 @@ pipeline {
             steps{
                 script {
                     def customImage = docker.build("my-oss/tagv1")
-                    customImage.push()
                 }
             }
         }
