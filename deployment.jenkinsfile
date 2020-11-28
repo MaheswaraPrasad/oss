@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        artifactoryCredentials: 'MyDocker'
+    }
     agent any
      tools {
        maven 'Maven'
@@ -21,16 +24,16 @@ pipeline {
         stage(‘Load’) {
             steps{
                 script {
-                    app = docker.build("cloud007/simple-spring")
+                    def customImage = docker.build("MyOss")
+                    customImage.push()
                 }
             }
         }
          stage(‘Deploy’) {
             steps{
                 script {
-                    docker.withRegistry( "https://registry.hub.docker.com", registryCredential ) {
-                    // dockerImage.push()
-                    app.push("latest")
+                    docker.withRegistry( "https://registry.hub.docker.com", artifactoryCredentials ) {
+                    customImage.push("latest")
                     }
                 }
             }
