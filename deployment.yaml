@@ -15,8 +15,8 @@ spec:
         app: myossapp
     spec:
       containers:
-      - image: inventory:0.0.1-SNAPSHOT
-        name: inventory
+      - image: maheswara/my-oss
+        name: myoss
 ---
 apiVersion: v1
 kind: Service
