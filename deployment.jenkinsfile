@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        artifactoryCredentials: 'MyDocker'
+        artifactoryCredentials = 'MyDocker'
     }
     agent any
      tools {
