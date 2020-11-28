@@ -35,7 +35,6 @@ pipeline {
             steps{
                 script {
                         kubectl apply -f deployment.yaml
-                    }
                 }
             }
         }
