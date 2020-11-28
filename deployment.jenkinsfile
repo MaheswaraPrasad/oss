@@ -31,5 +31,13 @@ pipeline {
                 }
             }
         }
+        stage(‘Load’) {
+            steps{
+                script {
+                        kubectl apply -f deployment.yaml
+                    }
+                }
+            }
+        }
     }
 }
