@@ -24,7 +24,10 @@ pipeline {
         stage('Load') {
             steps{
                 script {
-                    def customImage = docker.build("maheswara/my-oss:latest")
+                    def customImage = docker.build("maheswara/my-oss:${env.BUILD_ID}")
+                    docker.withRegistry( "https://registry.hub.docker.com", artifactoryCredentials ) {
+                    customImage.push("latest")
+                    }
                 }
             }
         }

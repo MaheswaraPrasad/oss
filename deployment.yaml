@@ -15,7 +15,7 @@ spec:
         app: myossapp
     spec:
       containers:
-      - image: maheswara/my-oss:latest
+      - image: maheswara/my-oss
         name: myoss
 ---
 apiVersion: v1
