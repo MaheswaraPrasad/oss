@@ -1,6 +1,6 @@
 package com.vidin.inventory;
-import static org.springframework.security.extensions.saml2.config.SAMLConfigurer.saml;
 
+import com.vidin.inventory.card.CsrfLoggerFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 @EnableWebSecurity
 @Configuration
@@ -32,12 +33,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+        http.cors();
+        http.addFilterAfter(new CsrfLoggerFilter(), CsrfFilter.class);
+//        http.csrf().disable();
         http
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();
-
     }
 
     @Autowired
