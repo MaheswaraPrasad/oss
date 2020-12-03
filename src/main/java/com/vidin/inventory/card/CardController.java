@@ -1,6 +1,7 @@
 package com.vidin.inventory.card;
 import java.util.List;
 
+import com.vidin.inventory.task.TaskExecutor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,10 +32,9 @@ public class CardController {
     }
 
     // Single item
-
     @GetMapping("/Cards/{id}")
     Card one(@PathVariable Long id) {
-
+        TaskExecutor.CreateTask(id);
         return repository.findById(id)
                 .orElseThrow(() -> new CardNotFoundException(id));
     }
